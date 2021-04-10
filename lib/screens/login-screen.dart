@@ -29,13 +29,13 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   TextInputField(
-                    icon: FontAwesomeIcons.envelope,
+                    //icon: FontAwesomeIcons.envelope,
                     hint: 'Email',
                     inputType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
                   ),
                   PasswordInput(
-                    icon: FontAwesomeIcons.lock,
+                    //icon: FontAwesomeIcons.lock,
                     hint: 'Password',
                     inputAction: TextInputAction.done,
                   ),

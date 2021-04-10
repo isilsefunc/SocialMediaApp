@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodybite_app/pallete.dart';
+import 'package:social_media_app/pallete.dart';
+
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({

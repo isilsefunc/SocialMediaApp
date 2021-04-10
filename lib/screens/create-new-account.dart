@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/pallete.dart';
 import 'package:social_media_app/widgets/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CreateNewAccount extends StatelessWidget {
   @override
