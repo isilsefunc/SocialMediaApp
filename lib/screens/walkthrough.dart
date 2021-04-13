@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:social_media_app/utils/pallete.dart';
+import 'package:social_media_app/utils/styles.dart';
+import 'package:social_media_app/widgets/widgets.dart';
 
 class WalkThrough extends StatefulWidget {
   @override
@@ -21,31 +24,47 @@ class _WalkThroughState extends State {
     "Connect with fellow sabanci students"];
 
   void nextPage() {
-    if(current<3){current +=1;}
-    setState(() {
-      build(context);
-    });
+    if(current<3)
+    {
+      current +=1;
+      setState(() {
+        build(context);
+      });
+    }
+    else if(current == 3)
+    {
+      Navigator.pushNamed(context, '/');
+    }
   }
 
   void prevPage() {
-    if(current>0){current -=1;}
-    setState(() {
-      build(context);
-    });
+    if(current>0)
+    {
+      current -=1;
+      setState(() {
+        build(context);
+      });
+    }
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF2F2F7),
+    return Stack(
+      children: [
+        BackgroundImage(
+          image: 'assets/images/walkthrough_bg.jpg',
+        ),
+      Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Color(0xFFD1D1D6),
+        backgroundColor: Color(0xFF454545),
         centerTitle: true,
         title: Text(
           appBarTitles[current],
           style:TextStyle(
             letterSpacing: -1,
-            color: Color(0xFF757575),
+            color: AppColors.kWhite,
           ),
         ),
       ),
@@ -61,7 +80,7 @@ class _WalkThroughState extends State {
                 fontSize: 32.0,
                 fontWeight: FontWeight.w800,
                 letterSpacing: -1,
-                color: Color(0xFF229A98),
+                color: AppColors.kWhite,
               ),
             ),
             CircleAvatar(
@@ -72,7 +91,7 @@ class _WalkThroughState extends State {
             Text(
               imageCaptions[current],
               style: TextStyle(
-                color: Color(0xFF757575),
+                color: AppColors.kWhite,
                 fontSize: 24.0,
                 fontWeight: FontWeight.w300,
                 letterSpacing: -1,
@@ -86,7 +105,8 @@ class _WalkThroughState extends State {
                   child: Text(
                     "Prev",
                     style: TextStyle(
-                      color: Color(0xFF229A98),
+                      color: AppColors.kBlue,
+                      fontSize: 22.0,
                     ),
                   ),
                 ),
@@ -95,7 +115,8 @@ class _WalkThroughState extends State {
                   child: Text(
                     "Next",
                     style: TextStyle(
-                      color: Color(0xFF229A98),
+                      color: AppColors.kBlue,
+                      fontSize: 22.0,
                     ),
                   ),
                 ),
@@ -104,6 +125,8 @@ class _WalkThroughState extends State {
           ],
         ),
       ),
+    )
+    ]
     );
   }
 }

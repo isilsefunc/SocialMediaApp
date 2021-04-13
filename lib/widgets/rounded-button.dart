@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_app/pallete.dart';
+import 'package:social_media_app/utils/pallete.dart';
+import 'package:social_media_app/utils/styles.dart';
 
 
 class RoundedButton extends StatelessWidget {
   const RoundedButton({
     Key key,
     @required this.buttonName,
+    String this.directory,
   }) : super(key: key);
 
+  final String directory;
   final String buttonName;
 
   @override
@@ -18,13 +21,15 @@ class RoundedButton extends StatelessWidget {
       width: size.width * 0.8,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: kBlue,
+        color: AppColors.kBlue,
       ),
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, directory);
+        },
         child: Text(
           buttonName,
-          style: kBodyText.copyWith(fontWeight: FontWeight.bold),
+          style: AppStyles.kBodyText.copyWith(fontWeight: FontWeight.bold),
         ),
       ),
     );

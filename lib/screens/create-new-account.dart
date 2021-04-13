@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:social_media_app/pallete.dart';
+import 'package:social_media_app/utils/pallete.dart';
+import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class CreateNewAccount extends StatelessWidget {
   @override
@@ -32,7 +34,7 @@ class CreateNewAccount extends StatelessWidget {
                             ),
                             child: Icon(
                               FontAwesomeIcons.user,
-                              color: kWhite,
+                              color: AppColors.kWhite,
                               size: size.width * 0.1,
                             ),
                           ),
@@ -46,13 +48,13 @@ class CreateNewAccount extends StatelessWidget {
                         height: size.width * 0.1,
                         width: size.width * 0.1,
                         decoration: BoxDecoration(
-                          color: kBlue,
+                          color: AppColors.kBlue,
                           shape: BoxShape.circle,
-                          border: Border.all(color: kWhite, width: 2),
+                          border: Border.all(color: AppColors.kWhite, width: 2),
                         ),
                         child: Icon(
                           FontAwesomeIcons.arrowUp,
-                          color: kWhite,
+                          color: AppColors.kWhite,
                         ),
                       ),
                     )
@@ -89,31 +91,6 @@ class CreateNewAccount extends StatelessWidget {
                       height: 25,
                     ),
                     RoundedButton(buttonName: 'Register'),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an account?',
-                          style: kBodyText,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/');
-                          },
-                          child: Text(
-                            'Login',
-                            style: kBodyText.copyWith(
-                                color: kBlue, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
                   ],
                 )
               ],

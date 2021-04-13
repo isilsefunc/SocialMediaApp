@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_app/pallete.dart';
-
+import 'package:social_media_app/utils/pallete.dart';
+import 'package:social_media_app/utils/styles.dart';
 
 class PasswordInput extends StatelessWidget {
   const PasswordInput({
@@ -37,14 +37,14 @@ class PasswordInput extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 28,
-                  color: kWhite,
+                  color: AppColors.kWhite,
                 ),
               ),
               hintText: hint,
-              hintStyle: kBodyText,
+              hintStyle: AppStyles.kBodyText,
             ),
             obscureText: true,
-            style: kBodyText,
+            style: AppStyles.kBodyText,
             keyboardType: inputType,
             textInputAction: inputAction,
           ),

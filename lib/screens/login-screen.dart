@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_app/pallete.dart';
+import 'package:social_media_app/utils/pallete.dart';
+import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
+
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -17,7 +19,7 @@ class LoginScreen extends StatelessWidget {
               Flexible(
                 child: Center(
                   child: Text(
-                    'Foodybite',
+                    'Konnekt',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 60,
@@ -43,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                     onTap: () => Navigator.pushNamed(context, 'ForgotPassword'),
                     child: Text(
                       'Forgot Password',
-                      style: kBodyText,
+                      style: AppStyles.kBodyText,
                     ),
                   ),
                   SizedBox(
@@ -56,18 +58,6 @@ class LoginScreen extends StatelessWidget {
                     height: 25,
                   ),
                 ],
-              ),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(context, 'CreateNewAccount'),
-                child: Container(
-                  child: Text(
-                    'Create New Account',
-                    style: kBodyText,
-                  ),
-                  decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(width: 1, color: kWhite))),
-                ),
               ),
               SizedBox(
                 height: 20,
