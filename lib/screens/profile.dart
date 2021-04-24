@@ -5,6 +5,8 @@ import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
 import "package:social_media_app/widgets/feed-post.dart";
 
+import 'package:flutter_swiper/flutter_swiper.dart';
+
 
 class Profile1 extends StatefulWidget {
   @override
@@ -12,6 +14,70 @@ class Profile1 extends StatefulWidget {
 }
 
 class _Profile1State extends State<Profile1> {
+  List<Widget> Tabs = [
+
+  Container(
+    padding: EdgeInsets.only(left: 16, right: 16, top:0.0, bottom: 24,),
+    child:  ListView(
+      physics: BouncingScrollPhysics(),
+      children: <Widget>[
+        FeedCard(
+          imagePath: "assets/images/card_image_1.jpg",
+          status: "open",
+          cardTitle: "Username",
+          category: "Italian",
+          distance: "12 km",
+          description: "Catch him if you can",
+          isThereStatus: false,
+          onTap: () {},
+        ),
+        SizedBox(
+          height: 16.0,
+        ),
+        FeedCard(
+          imagePath: "assets/images/card_image_2.jpg",
+          status: "open",
+          cardTitle: "Username",
+          category: "Italian",
+          distance: "12 km",
+          description: "Grand-son of Barney Stinson",
+          isThereStatus: false,
+          onTap: () {},
+        ),
+      ],
+    ),
+  ),
+    Container(
+
+      padding: EdgeInsets.only(left: 16, right: 16, top: 0, bottom: 24,),
+      child:
+      GridView.count(
+        crossAxisCount: 3,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        physics: BouncingScrollPhysics(),
+        children: List.generate(posts.length, (int index) {
+
+          return GestureDetector(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                image: DecorationImage(
+                  image: AssetImage(posts[index]["img"]),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    ),
+  ];
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -29,7 +95,7 @@ class _Profile1State extends State<Profile1> {
               children: <Widget>[
 
                 Container(
-                  height: size.height * 0.30,
+                  height: size.height * 0.40,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/background1.jpg"),
@@ -73,9 +139,9 @@ class _Profile1State extends State<Profile1> {
                         ),
                       ),
 
-                      Expanded(
+                     /* Expanded(
                         child: Container(),
-                      ),
+                      ),*/
 
                       Container(
                         height: 64,
@@ -84,9 +150,9 @@ class _Profile1State extends State<Profile1> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
 
-                            Expanded(
+                           /* Expanded(
                               child: Container(),
-                            ),
+                            ),*/
 
                             Container(
                               width: 110,
@@ -95,7 +161,7 @@ class _Profile1State extends State<Profile1> {
                                 children: <Widget>[
 
                                   Text(
-                                    "FOLLOWERS",
+                                    "POSTS",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
@@ -107,7 +173,7 @@ class _Profile1State extends State<Profile1> {
                                   ),
 
                                   Text(
-                                    "555",
+                                    "13",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
@@ -157,7 +223,7 @@ class _Profile1State extends State<Profile1> {
                                 children: <Widget>[
 
                                   Text(
-                                    "FOLLOWER",
+                                    "FOLLOWERS",
                                     style: TextStyle(
                                       color: Colors.white70,
                                       fontSize: 12,
@@ -180,10 +246,10 @@ class _Profile1State extends State<Profile1> {
                                 ],
                               ),
                             ),
-
+                            /*
                             Expanded(
                               child: Container(),
-                            ),
+                            ),*/
 
                           ],
                         ),
@@ -193,7 +259,7 @@ class _Profile1State extends State<Profile1> {
                   ),
                 ),
 
-                Material(
+                /*Material(
                   elevation: 1,
                   child: Container(
                     height: 56,
@@ -232,65 +298,32 @@ class _Profile1State extends State<Profile1> {
                       ],
                     ),
                   ),
+                ),*/
+
+                Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return _buildSwiperList(Tabs[index], index);
+                  },
+
+                  itemWidth: size.width,
+                  itemHeight: size.height * 0.60 - 56,
+                  itemCount: Tabs.length,
+                  layout: SwiperLayout.CUSTOM,
+                  pagination: SwiperPagination(),
+                  customLayoutOption:
+                  new CustomLayoutOption(startIndex: -1, stateCount: 2)
+                      .addRotate([0.0 / 180, 0.0, 0.0 / 180]).addTranslate([
+                    new Offset(-400.0, 0.0),
+                    new Offset(0.0, 0.0),
+                    new Offset(400.0, 0.0)
+                  ]),
+                  // control:SwiperControl(),
                 ),
 
-
-                Column(
-                  children: <Widget>[
-                    FeedCard(
-                      imagePath: "assets/images/card_image_1.jpg",
-                      status: "open",
-                      cardTitle: "Gramercy Tavern",
-                      category: "Italian",
-                      distance: "12 km",
-                      description: "394 Broome St, New York, NY 10013, USA",
-                      isThereStatus: false,
-                      onTap: () {},
-                    ),
-                    SizedBox(
-                      height: 16.0,
-                    ),
-                    FeedCard(
-                      imagePath: "assets/images/card_image_2.jpg",
-                      status: "open",
-                      cardTitle: "Happy Bones",
-                      category: "Italian",
-                      distance: "12 km",
-                      description: "394 Broome St, New York, NY 10013, USA",
-                      isThereStatus: false,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
 
                 /*Container(
 
-                  height: size.height * 0.60 - 56,
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 0, bottom: 24,),
-                  child:
-                  GridView.count(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    physics: BouncingScrollPhysics(),
-                    children: List.generate(posts.length, (int index) {
 
-                      return GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            image: DecorationImage(
-                              image: AssetImage(posts[index]["img"]),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
                 ),*/
 
 
@@ -353,6 +386,13 @@ class _Profile1State extends State<Profile1> {
 
         ],
       ),
+    );
+  }
+
+  Widget _buildSwiperList(Widget item, int index) {
+    return Container(
+      //margin: EdgeInsets.only(left: 15, right: 15),
+      child: item,
     );
   }
 }
