@@ -23,7 +23,7 @@ class FeedCard extends StatelessWidget {
 
   FeedCard({
     this.status = "OPEN",
-    this.rating = "4335",
+    this.rating = "45",
     this.imagePath,
     this.cardTitle,
     this.category,
