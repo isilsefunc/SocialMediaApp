@@ -7,6 +7,10 @@ class AppColors {
   static const Color textColor = const Color(0xFF424242);
   static const Color headingColor = const Color(0xFF0277BD);
   static const Color captionColor = Colors.white30;
+
+  static const Color headingText = Color.fromARGB(255, 34, 36, 85);
+  static const Color accentText = Color.fromARGB(255, 110, 127, 170);
+  static const Color KonnektGreen = Color.fromRGBO(76, 217, 100, 1);
 }
 
 
