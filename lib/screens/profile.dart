@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
+import "package:social_media_app/widgets/feed-post.dart";
 
 
 class Profile1 extends StatefulWidget {
@@ -234,8 +235,35 @@ class _Profile1State extends State<Profile1> {
                 ),
 
 
+                Column(
+                  children: <Widget>[
+                    FeedCard(
+                      imagePath: "assets/images/card_image_1.jpg",
+                      status: "open",
+                      cardTitle: "Gramercy Tavern",
+                      category: "Italian",
+                      distance: "12 km",
+                      description: "394 Broome St, New York, NY 10013, USA",
+                      isThereStatus: false,
+                      onTap: () {},
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    FeedCard(
+                      imagePath: "assets/images/card_image_2.jpg",
+                      status: "open",
+                      cardTitle: "Happy Bones",
+                      category: "Italian",
+                      distance: "12 km",
+                      description: "394 Broome St, New York, NY 10013, USA",
+                      isThereStatus: false,
+                      onTap: () {},
+                    ),
+                  ],
+                ),
 
-                Container(
+                /*Container(
 
                   height: size.height * 0.60 - 56,
                   padding: EdgeInsets.only(left: 16, right: 16, top: 0, bottom: 24,),
@@ -263,7 +291,7 @@ class _Profile1State extends State<Profile1> {
                       );
                     }),
                   ),
-                ),
+                ),*/
 
 
               ],

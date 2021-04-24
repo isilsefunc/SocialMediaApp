@@ -16,6 +16,7 @@ void main() {
       '/login': (context) => LoginScreen(),
       '/signup': (context) => CreateNewAccount(),
       '/walkthrough': (context) => WalkThrough(),
+      '/profile' : (context) => Profile1(),
     },
   ));
 }
