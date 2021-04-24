@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -31,13 +31,13 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   TextInputField(
-                    //icon: FontAwesomeIcons.envelope,
+                    icon: FontAwesomeIcons.envelope,
                     hint: 'Email',
                     inputType: TextInputType.emailAddress,
                     inputAction: TextInputAction.next,
                   ),
                   PasswordInput(
-                    //icon: FontAwesomeIcons.lock,
+                    icon: FontAwesomeIcons.lock,
                     hint: 'Password',
                     inputAction: TextInputAction.done,
                   ),
@@ -53,7 +53,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                   RoundedButton(
                     buttonName: 'Login',
-                    directory: '/profile',
                   ),
                   SizedBox(
                     height: 25,
