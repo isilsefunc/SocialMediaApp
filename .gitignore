@@ -9,6 +9,8 @@
 **/android/key.properties
 *.jks
 
+
+build/
 # file for the .android directory when flutter is integrated into an existing project.
 **/.android/**/gradle-wrapper.jar
 **/.android/.gradle
