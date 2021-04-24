@@ -9,12 +9,14 @@ class TextInputField extends StatelessWidget {
     @required this.hint,
     this.inputType,
     this.inputAction,
+    this.isSearch = false,
   }) : super(key: key);
 
   final IconData icon;
   final String hint;
   final TextInputType inputType;
   final TextInputAction inputAction;
+  final bool isSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class TextInputField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: Container(
         height: size.height * 0.08,
-        width: size.width * 0.8,
+        width: isSearch? size.width * 1: size.width * 0.8,
         decoration: BoxDecoration(
           color: Colors.grey[500].withOpacity(0.5),
           borderRadius: BorderRadius.circular(16),
