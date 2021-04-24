@@ -23,7 +23,7 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         color: AppColors.kBlue,
       ),
-      child: FlatButton(
+      child: TextButton(
         onPressed: () {
           Navigator.pushNamed(context, directory);
         },

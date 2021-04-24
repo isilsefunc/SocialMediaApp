@@ -53,6 +53,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   RoundedButton(
                     buttonName: 'Login',
+                    directory: '/profile',
                   ),
                   SizedBox(
                     height: 25,
