@@ -3,12 +3,18 @@ import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import "package:social_media_app/widgets/feed-post.dart";
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   //final SearchValue searchValue;
 
   //SearchResultsScreen(this.searchValue);
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
 
+class _SearchScreenState extends State<SearchScreen>{
+  List<bool> isSelected = List.generate(4, (_) => false);
   @override
   Widget build(BuildContext context) {
    /* void navigateToDetailScreen() {
@@ -28,63 +34,118 @@ class SearchScreen extends StatelessWidget {
             children: [
               Center(
                 child:
-                  TextInputField(
-                    isSearch: true,
-                    icon: FontAwesomeIcons.search,
-                    hint: 'Search',
-                    inputAction: TextInputAction.next,
+                  Column(
+                    children: [
+                      TextInputField(
+                        isSearch: true,
+                        icon: FontAwesomeIcons.search,
+                        hint: 'Search',
+                        inputAction: TextInputAction.next,
+                      ),
+                      Center(
+                        child: ToggleButtons(
+                          borderColor: AppColors.kBlue,
+                          fillColor: AppColors.kBlue,
+                          borderWidth: 2.5,
+                          selectedBorderColor: Colors.black,
+                          selectedColor: AppColors.kWhite,
+                          splashColor: AppColors.kBlue,
+                          highlightColor: const Color(0xFF580CBA),
+                          borderRadius: BorderRadius.circular(0),
+                          constraints: BoxConstraints.expand(width: 82, height: 20),
+                          children: <Widget>[
+                            Text("Profile"),
+                            Text("Posts"),
+                            Text("Tags"),
+                            Text("Locations"),
+                          ],
+                          onPressed: (int index) {
+                            setState(() {
+                              for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++) {
+                                if (buttonIndex == index) {
+                                  isSelected[buttonIndex] = !isSelected[buttonIndex];
+                                } else {
+                                  isSelected[buttonIndex] = false;
+                                }
+                              }
+                            });
+                          },
+                          isSelected: isSelected,
+                        ),
+                      ),
+                    ],
                   ),
               ),
+              if(isSelected[0]) Stack(
+                children: [
 
-              /*FoodyBiteSearchInputField(
-                ImagePath.searchIcon,
-                controller: controller,
-                textFormFieldStyle:
-                    Styles.customNormalTextStyle(color: AppColors.accentText),
-                hintText: StringConst.HINT_TEXT_TRENDING_SEARCH_BAR,
-                hintTextStyle:
-                    Styles.customNormalTextStyle(color: AppColors.accentText),
-                suffixIconImagePath: ImagePath.closeIcon,
-                onTapOfSuffixIcon: () => Navigator.pop(context),
-                borderWidth: 0.0,
-                borderStyle: BorderStyle.solid,
-              ), */
-              /*Expanded(
-                child: ListView.separated(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 4,
-                  separatorBuilder: (context, index) {
-                    return SpaceH8();
-                  },
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: FoodyBiteCard(
-                        onTap: () => AppRouter.navigator.pushNamed(
-                          AppRouter.restaurantDetailsScreen,
-                          arguments: RestaurantDetails(
-                            imagePath: imagePaths[index],
-                            restaurantName: restaurantNames[index],
-                            restaurantAddress: addresses[index],
-                            rating: ratings[index],
-                            category: category[index],
-                            distance: distance[index],
-                          ),
-                        ),
-                        imagePath: imagePaths[index],
-                        status: status[index],
-                        cardTitle: restaurantNames[index],
-                        rating: ratings[index],
-                        category: category[index],
-                        distance: distance[index],
-                        address: addresses[index],
-                      ),
-                    );
-                  },
+                ],
+              ),
+              if(isSelected[1]) Stack(
+                children: [
+                  FeedCard(
+                  imagePath: "assets/images/card_image_1.jpg",
+                  status: "open",
+                  cardTitle: "cimenbaran",
+                  category: "Italian",
+                  distance: "12 km",
+                  description: "Baran(21): CS okumak hiç stresli değil",
+                  isThereStatus: false,
+                  onTap: () {},
                 ),
-              ),*/
+                ],
+              ),
+              if(isSelected[2]) Stack(
+                children: [
+
+                ],
+              ),
+              if(isSelected[3]) Stack(
+                children: [
+
+                ],
+              ),
             ],
           ),
         ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled),
+            label: "Home",
+            backgroundColor: AppColors.kBlue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.tag),
+            label: "Search",
+            backgroundColor: AppColors.kBlue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.messenger),
+            label: "Messages",
+            backgroundColor: AppColors.kBlue,
+
+
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: "Notifications",
+            backgroundColor: AppColors.kBlue,
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+            backgroundColor: AppColors.kBlue,
+          ),
+
+        ],
       ),
     );
   }

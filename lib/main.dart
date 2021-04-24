@@ -11,7 +11,7 @@ import 'package:social_media_app/screens/search-screen.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/walkthrough',
+    initialRoute: '/search',
     routes: {
       '/': (context) => Welcome(),
       '/login': (context) => LoginScreen(),
