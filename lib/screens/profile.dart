@@ -24,10 +24,10 @@ class _Profile1State extends State<Profile1> {
         FeedCard(
           imagePath: "assets/images/card_image_1.jpg",
           status: "open",
-          cardTitle: "Username",
+          cardTitle: "Baranci",
           category: "Italian",
           distance: "12 km",
-          description: "Catch him if you can",
+          description: "Baran(21) CS okumak hiç stresli değil",
           isThereStatus: false,
           onTap: () {},
         ),
@@ -37,7 +37,7 @@ class _Profile1State extends State<Profile1> {
         FeedCard(
           imagePath: "assets/images/card_image_2.jpg",
           status: "open",
-          cardTitle: "Username",
+          cardTitle: "Baranci",
           category: "Italian",
           distance: "12 km",
           description: "Grand-son of Barney Stinson",
@@ -56,8 +56,8 @@ class _Profile1State extends State<Profile1> {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
         physics: BouncingScrollPhysics(),
-        children: List.generate(posts.length, (int index) {
-
+        children: List.generate(2, (int index) {
+          int asset_index = index+1;
           return GestureDetector(
             onTap: () {},
             child: Container(
@@ -66,7 +66,7 @@ class _Profile1State extends State<Profile1> {
                   Radius.circular(10),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(posts[index]["img"]),
+                  image: AssetImage("assets/images/card_image_$asset_index.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -76,7 +76,14 @@ class _Profile1State extends State<Profile1> {
       ),
     ),
   ];
-
+  int _currentIndex = 4;
+  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      Navigator.pushNamed(context, pages[index]);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -349,7 +356,8 @@ class _Profile1State extends State<Profile1> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 4,
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

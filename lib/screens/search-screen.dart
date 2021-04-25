@@ -18,6 +18,16 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen>{
   List<bool> isSelected = List.generate(4, (_) => false);
+
+  int _currentIndex = 1;
+  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      Navigator.pushNamed(context, pages[index]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
    /* void navigateToDetailScreen() {
@@ -159,7 +169,8 @@ class _SearchScreenState extends State<SearchScreen>{
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

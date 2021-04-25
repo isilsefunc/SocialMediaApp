@@ -101,7 +101,7 @@ class _WalkThroughState extends State {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                TextButton(onPressed: prevPage,
+                if(current != 0)TextButton(onPressed: prevPage,
                   child: Text(
                     "Prev",
                     style: TextStyle(
@@ -111,9 +111,18 @@ class _WalkThroughState extends State {
                   ),
                 ),
                 Text("${current+1}/$total"),
-                TextButton(onPressed: nextPage,
+                if(current !=3)TextButton(onPressed: nextPage,
                   child: Text(
                     "Next",
+                    style: TextStyle(
+                      color: AppColors.kBlue,
+                      fontSize: 22.0,
+                    ),
+                  ),
+                ),
+                if(current ==3)TextButton(onPressed: nextPage,
+                  child: Text(
+                    "Finish",
                     style: TextStyle(
                       color: AppColors.kBlue,
                       fontSize: 22.0,

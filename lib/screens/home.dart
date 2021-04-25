@@ -70,7 +70,7 @@ class _HomeFeedState extends State<HomeFeed> {
       cardTitle: "Isilsefunc",
       category: "Italian",
       distance: "12 km",
-      description: "Life is meaningless if you don't have black hair",
+      description: "Life is meaningless if you have black hair",
       isThereStatus: false,
       onTap: () {},
     ),
@@ -161,12 +161,19 @@ class _HomeFeedState extends State<HomeFeed> {
       cardTitle: "Goktug_calskan",
       category: "Italian",
       distance: "12 km",
-      description: "Ne sen bunun farkındasın ne de sincap farkında..",
+      description: "Ne sen bunun farkındasın ne de sincap.",
       isThereStatus: false,
       onTap: () {},
     ),
   ];
-
+  int _currentIndex = 0;
+  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      Navigator.pushNamed(context, pages[index]);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +196,8 @@ class _HomeFeedState extends State<HomeFeed> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex, // new
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),

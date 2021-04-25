@@ -12,7 +12,7 @@ import 'package:social_media_app/screens/home.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/home',
+    initialRoute: '/walkthrough',
     routes: {
       '/': (context) => Welcome(),
       '/login': (context) => LoginScreen(),
@@ -21,6 +21,7 @@ void main() {
       '/profile' : (context) => Profile1(),
       '/search' : (context) => SearchScreen(),
       '/home' : (context) => HomeFeed(),
+      '/notification' : (context) => Notifications(),
 
     },
   ));
