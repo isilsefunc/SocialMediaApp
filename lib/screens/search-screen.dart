@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
+import 'package:social_media_app/widgets/tag_card.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:social_media_app/widgets/feed-post.dart";
+import "package:social_media_app/widgets/profile_card.dart";
+import "package:social_media_app/widgets/location_card.dart";
 
 class SearchScreen extends StatefulWidget {
   //final SearchValue searchValue;
@@ -24,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen>{
    // var controller = TextEditingController(text: searchValue.value);
 
     return Scaffold(
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Container(
           margin: new EdgeInsets.symmetric(
             horizontal: 16.0,
@@ -36,6 +39,7 @@ class _SearchScreenState extends State<SearchScreen>{
                 child:
                   Column(
                     children: [
+                      SizedBox(height: 40,),
                       TextInputField(
                         isSearch: true,
                         icon: FontAwesomeIcons.search,
@@ -76,12 +80,32 @@ class _SearchScreenState extends State<SearchScreen>{
                     ],
                   ),
               ),
-              if(isSelected[0]) Stack(
+              SizedBox(height: 10),
+              if(isSelected[0]) Column(
                 children: [
-
+                  ProfileCard(
+                    username: "dabbegok",
+                    imagePath: "assets/images/card_image_1.jpg",
+                  ),
+                  ProfileCard(
+                    username: "Aataberk",
+                    imagePath: "assets/images/card_image_10.jpg",
+                  ),
+                  ProfileCard(
+                    username: "Isıl_Sefunc",
+                    imagePath: "assets/images/card_image_5.jpg",
+                  ),
+                  ProfileCard(
+                    username: "Jozkeh",
+                    imagePath: "assets/images/card_image_3.jpg",
+                  ),
+                  ProfileCard(
+                    username: "Batuhan",
+                    imagePath: "assets/images/card_image_7.jpg",
+                  ),
                 ],
               ),
-              if(isSelected[1]) Stack(
+              if(isSelected[1]) Column(
                 children: [
                   FeedCard(
                   imagePath: "assets/images/card_image_1.jpg",
@@ -93,16 +117,40 @@ class _SearchScreenState extends State<SearchScreen>{
                   isThereStatus: false,
                   onTap: () {},
                 ),
+                  FeedCard(
+                    imagePath: "assets/images/card_image_4.jpg",
+                    status: "open",
+                    cardTitle: "Jozkeh",
+                    category: "Italian",
+                    distance: "12 km",
+                    description: "Bugün de Bitcoin'den battık",
+                    isThereStatus: false,
+                    onTap: () {},
+                  ),
+                  FeedCard(
+                    imagePath: "assets/images/card_image_9.jpg",
+                    status: "open",
+                    cardTitle: "Ataberkylmaz",
+                    category: "Italian",
+                    distance: "12 km",
+                    description: "Corona drinking in Corona times",
+                    isThereStatus: false,
+                    onTap: () {},
+                  ),
                 ],
               ),
-              if(isSelected[2]) Stack(
+              if(isSelected[2]) Column(
                 children: [
-
+                  TagCard(
+                    tag: "naber_lan_tirrek",
+                  ),
                 ],
               ),
-              if(isSelected[3]) Stack(
+              if(isSelected[3]) Column(
                 children: [
-
+                  LocationCard(
+                    location: "Sabancı University",
+                  ),
                 ],
               ),
             ],

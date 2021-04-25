@@ -75,12 +75,14 @@
     },
     {
       "name": "flutter_page_indicator",
+
       "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_page_indicator-0.0.3",
       "packageUri": "lib/",
       "languageVersion": "2.0"
     },
     {
       "name": "flutter_swiper",
+
       "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_swiper-1.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.0"
@@ -231,6 +233,7 @@
     },
     {
       "name": "transformer_page_view",
+
       "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/transformer_page_view-0.1.6",
       "packageUri": "lib/",
       "languageVersion": "2.0"
@@ -266,7 +269,9 @@
       "languageVersion": "2.7"
     }
   ],
+
   "generated": "2021-04-24T19:17:50.197222Z",
+
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }
