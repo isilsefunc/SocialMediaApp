@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/data.dart';
+import 'package:social_media_app/utils/data.dart';
+import "package:social_media_app/widgets/notification_card.dart";
 
 class Notifications extends StatefulWidget {
   @override
@@ -8,6 +10,14 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
+  int _currentIndex = 3;
+  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      Navigator.pushNamed(context, pages[index]);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,31 +52,16 @@ class _NotificationsState extends State<Notifications> {
         itemCount: notifications.length,
         itemBuilder: (BuildContext context, int index) {
           Map notif = notifications[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage(
-                  notif['dp'],
-                ),
-                radius: 25,
-              ),
-              contentPadding: EdgeInsets.all(0),
-              title: Text(notif['notif']),
-              trailing: Text(
-                notif['time'],
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 11,
-                ),
-              ),
-              onTap: () {},
-            ),
+          return NotifCard(
+            image:notif["dp"],
+            notif: notif["notif"],
+            time: notif["time"],
           );
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
+        onTap: onTabTapped, // new
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_filled),
