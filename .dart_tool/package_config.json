@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///S:/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "font_awesome_flutter",
       "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-8.12.0",
       "packageUri": "lib/",
@@ -142,6 +148,12 @@
     {
       "name": "js",
       "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -218,10 +230,42 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "quiver",
-      "rootUri": "file:///Users/isilsefunc/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-2.1.5",
+
+      "name": "shared_preferences",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.5",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_linux",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_linux-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_macos",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_platform_interface",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_platform_interface-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_web",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shared_preferences_windows",
+      "rootUri": "file:///S:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_windows-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+
     },
     {
       "name": "sky_engine",
@@ -302,7 +346,9 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-05-15T15:36:12.727413Z",
+
+  "generated": "2021-05-15T12:10:06.167528Z",
+
   "generator": "pub",
   "generatorVersion": "2.12.2"
 }
