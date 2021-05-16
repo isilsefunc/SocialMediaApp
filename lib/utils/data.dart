@@ -30,19 +30,21 @@ List notifs = [
   "You have memories with ${names[random.nextInt(10)]}",
   "${names[random.nextInt(10)]} Tagged you and ${random.nextInt(100)} others in a post",
   "${names[random.nextInt(10)]} Sent you a friend request",
+  "${names[random.nextInt(10)]} wants to follow you",
+  "${names[random.nextInt(10)]} Sent you a message request",
 ];
 
 List notifications = List.generate(
-    13,
+    15,
         (index) => {
       "name": names[random.nextInt(10)],
       "dp": "assets/images/friends_${random.nextInt(7)}.jpg",
       "time": "${random.nextInt(50)} min ago",
-      "notif": notifs[random.nextInt(10)]
+      "notif": notifs[random.nextInt(13)]
     });
 
 List users = List.generate(
-    13,
+    15,
         (index) => {
        "name": names[random.nextInt(10)],
         "dp": "assets/images/friends_${random.nextInt(7)}.jpg",
@@ -53,7 +55,7 @@ List users = List.generate(
     });
 
 List posts = List.generate(
-    13,
+    15,
         (index) => {
       "name": names[random.nextInt(10)],
       "dp": "assets/images/friends_${random.nextInt(7)}.jpg",
@@ -67,7 +69,7 @@ List posts = List.generate(
 
 
 List friends = List.generate(
-    13,
+    15,
         (index) => {
       "name": names[random.nextInt(10)],
       "dp": "assets/images/cm${random.nextInt(10)}.jpg",
