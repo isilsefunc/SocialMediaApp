@@ -33,7 +33,7 @@ class _WalkThroughState extends State {
     }
     else if(current == 3)
     {
-      Navigator.pushNamed(context, '/');
+      Navigator.pushNamed(context, '/welcome');
     }
   }
 

@@ -10,6 +10,7 @@
 *.jks
 
 .flutter-plugins-dependencies
+.dart_tool
 .dart_tool/
 build/
 # file for the .android directory when flutter is integrated into an existing project.
