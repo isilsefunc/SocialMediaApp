@@ -3,6 +3,8 @@ import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:social_media_app/utils/guugleSignIn.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -49,7 +51,16 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 35,
+                  ),
+                  SignInButtonBuilder(
+                    icon: Icons.email,
+                    text: "Sign in with Google",
+                    onPressed: signInWithGoogle,
+                    backgroundColor: AppColors.kBlue,
+                  ),
+                  SizedBox(
+                    height: 15,
                   ),
                   RoundedButton(
                     buttonName: 'Login',
