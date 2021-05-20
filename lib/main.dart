@@ -1,5 +1,6 @@
 //import 'dart:js';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/screens/walkthrough.dart';
 import 'package:social_media_app/screens/login-screen.dart';
@@ -10,12 +11,12 @@ import 'package:social_media_app/screens/notifications.dart';
 import 'package:social_media_app/screens/search-screen.dart';
 import 'package:social_media_app/screens/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 
 
 // String inRoute = 'login';
 bool _seen = false;
+FirebaseAnalytics analytics = FirebaseAnalytics();
 void checkFirstSeen() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   _seen = (prefs.getBool('seen') ?? false);

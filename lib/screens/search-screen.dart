@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
@@ -7,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:social_media_app/widgets/feed-post.dart";
 import "package:social_media_app/widgets/profile_card.dart";
 import "package:social_media_app/widgets/location_card.dart";
+
 
 class SearchScreen extends StatefulWidget {
   //final SearchValue searchValue;
@@ -35,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen>{
     }*/
 
    // var controller = TextEditingController(text: searchValue.value);
-
+    FirebaseAnalytics().logEvent(name: 'Search',parameters:null);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(

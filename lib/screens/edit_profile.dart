@@ -1,6 +1,8 @@
 import 'dart:ui';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
+
 
 class EditProfilePage extends StatefulWidget {
   @override
@@ -11,6 +13,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
+    FirebaseAnalytics().logEvent(name: 'Edit_Profile',parameters:null);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,

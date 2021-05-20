@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -89,7 +90,7 @@ class _Profile1State extends State<Profile1> {
   Widget build(BuildContext context) {
 
     Size size = MediaQuery.of(context).size;
-
+    FirebaseAnalytics().logEvent(name: 'Profile_Page',parameters:null);
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(

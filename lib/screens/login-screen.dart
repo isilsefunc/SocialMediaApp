@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_app/screens/home.dart';
@@ -7,6 +8,7 @@ import 'package:social_media_app/widgets/widgets.dart';
 import 'package:social_media_app/utils/guugleSignIn.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -20,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    FirebaseAnalytics().logEvent(name: 'Sign_In',parameters:null);
     return Stack(
       children: [
         BackgroundImage(

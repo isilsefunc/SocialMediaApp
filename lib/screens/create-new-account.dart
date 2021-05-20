@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/screens/home.dart';
 import 'package:social_media_app/utils/pallete.dart';
@@ -21,6 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    FirebaseAnalytics().logEvent(name: 'Register',parameters:null);
     return Stack(
       children: [
         BackgroundImage(image: 'assets/images/register_bg.png'),
@@ -206,8 +208,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => HomeFeed()));
+
                           });
                         }
+
                     },
                     child: Text(
                     'Sign up',
