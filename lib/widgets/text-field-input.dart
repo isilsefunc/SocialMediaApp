@@ -7,16 +7,20 @@ class TextInputField extends StatelessWidget {
     Key key,
     @required this.icon,
     @required this.hint,
+    this.function,
+
     this.inputType,
     this.inputAction,
     this.isSearch = false,
   }) : super(key: key);
+
 
   final IconData icon;
   final String hint;
   final TextInputType inputType;
   final TextInputAction inputAction;
   final bool isSearch;
+  final Function function;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,7 @@ class TextInputField extends StatelessWidget {
         ),
         child: Center(
           child: TextField(
+
             decoration: InputDecoration(
               border: InputBorder.none,
               prefixIcon: Padding(

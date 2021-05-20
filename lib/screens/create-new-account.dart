@@ -1,12 +1,23 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:social_media_app/screens/home.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
-class CreateNewAccount extends StatelessWidget {
+
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  String _email, _password, _password2;
+  final auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -65,32 +76,146 @@ class CreateNewAccount extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    TextInputField(
-                      icon: FontAwesomeIcons.user,
-                      hint: 'User',
-                      inputType: TextInputType.name,
-                      inputAction: TextInputAction.next,
+                    Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Container(
+              height: size.height * 0.08,
+              width:  size.width * 0.8,
+              decoration: BoxDecoration(
+                color: Colors.grey[500].withOpacity(0.5),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      _email = value.trim();
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Icon(
+                        FontAwesomeIcons.user,
+                        size: 28,
+                        color: AppColors.kWhite,
+                      ),
                     ),
-                    TextInputField(
-                      icon: FontAwesomeIcons.envelope,
-                      hint: 'Email',
-                      inputType: TextInputType.emailAddress,
-                      inputAction: TextInputAction.next,
+                    hintText: 'Email',
+                    hintStyle: AppStyles.kBodyText,
+                  ),
+                  style: AppStyles.kBodyText,
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Container(
+              height: size.height * 0.08,
+              width: size.width * 0.8,
+              decoration: BoxDecoration(
+                color: Colors.grey[500].withOpacity(0.5),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      _password = value.trim();
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Icon(
+                        FontAwesomeIcons.lock,
+                        size: 28,
+                        color: AppColors.kWhite,
+                      ),
                     ),
-                    PasswordInput(
-                      icon: FontAwesomeIcons.lock,
-                      hint: 'Password',
-                      inputAction: TextInputAction.next,
+                    hintText: 'Password',
+                    hintStyle: AppStyles.kBodyText,
+                  ),
+                  obscureText: true,
+                  style: AppStyles.kBodyText,
+                  textInputAction: TextInputAction.done,
+                ),
+              ),
+            ),
+          ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.8,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[500].withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Center(
+                          child: TextField(
+                            onChanged: (value) {
+                              setState(() {
+                                _password2 = value.trim();
+                              });
+                            },
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                child: Icon(
+                                  FontAwesomeIcons.lock,
+                                  size: 28,
+                                  color: AppColors.kWhite,
+                                ),
+                              ),
+                              hintText: 'Password Confirm',
+                              hintStyle: AppStyles.kBodyText,
+                            ),
+                            obscureText: true,
+                            style: AppStyles.kBodyText,
+                            textInputAction: TextInputAction.done,
+                          ),
+                        ),
+                      ),
                     ),
-                    PasswordInput(
-                      icon: FontAwesomeIcons.lock,
-                      hint: 'Confirm Password',
-                      inputAction: TextInputAction.done,
-                    ),
+
                     SizedBox(
                       height: 25,
                     ),
-                    RoundedButton(buttonName: 'Register'),
+                    // ignore: deprecated_member_use
+
+                    Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.5,
+                    decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: AppColors.kBlue,
+                    ),
+                    child: TextButton(
+                      onPressed: (){
+                        if(_password == _password2) {
+                          auth.createUserWithEmailAndPassword(
+                              email: _email, password: _password).then((_) {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => HomeFeed()));
+                          });
+                        }
+                    },
+                    child: Text(
+                    'Sign up',
+                    style: AppStyles.kBodyText.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    ),
+                    ),
+
                   ],
                 )
               ],

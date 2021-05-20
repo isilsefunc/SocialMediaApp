@@ -1,10 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
-import 'package:social_media_app/utils/styles.dart';
-import 'package:social_media_app/widgets/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class EditProfilePage extends StatefulWidget {
   @override

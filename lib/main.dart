@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
+
 // String inRoute = 'login';
 bool _seen = false;
 void checkFirstSeen() async {
@@ -75,7 +76,7 @@ class App extends StatelessWidget {
             routes: {
               '/welcome': (context) => Welcome(),
               '/login': (context) => LoginScreen(),
-              '/signup': (context) => CreateNewAccount(),
+              '/signup': (context) => RegisterScreen(),
               '/walkthrough': (context) => WalkThrough(),
               '/profile' : (context) => Profile1(),
               '/search' : (context) => SearchScreen(),
