@@ -14,6 +14,7 @@ import 'profile.dart';
 import 'search-screen.dart';
 import 'walkthrough.dart';
 import 'authenticate/welcome.dart';
+import 'new-post.dart';
 
 
 
@@ -64,6 +65,7 @@ class Wrapper extends StatelessWidget {
                 '/search' : (context) => SearchScreen(),
                 '/home' : (context) => HomeFeed(),
                 '/notification' : (context) => Notifications(),
+                '/newpost' : (context) => Newpost(),
               },
             ),
           );

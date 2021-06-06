@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_app/services/auth.dart';
 import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
@@ -81,7 +82,7 @@ class _Profile1State extends State<Profile1> {
     ),
   ];
   int _currentIndex = 4;
-  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  List <String> pages = ["/home", "/search", "/newpost", "/notification", "/profile"];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -95,7 +96,20 @@ class _Profile1State extends State<Profile1> {
     Size size = MediaQuery.of(context).size;
     FirebaseAnalytics().logEvent(name: 'Profile_Page',parameters:null);
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: AppColors.kBlue,
+        actions: [
+          TextButton(
+          onPressed:  () async {
+            dynamic result = await _auth.signOut();
+            print(result);
+            Navigator.pushNamed(context, "/welcome");
+          },
+          child: Text("Log Out", style: TextStyle(color: AppColors.kWhite),),
+          )
+        ],
+      ),
+      extendBodyBehindAppBar: false,
       body: SingleChildScrollView(
         child: Stack(
           children: <Widget>[
@@ -106,7 +120,7 @@ class _Profile1State extends State<Profile1> {
               children: <Widget>[
 
                 Container(
-                  height: size.height * 0.40,
+                  height: size.height * 0.35,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/background1.jpg"),
@@ -254,14 +268,7 @@ class _Profile1State extends State<Profile1> {
                                     ),
                                   ),
 
-                                  TextButton(
-                                      onPressed:  () async {
-                                        dynamic result = await _auth.signOut();
-                                        print(result);
-                                          Navigator.pushNamed(context, "/welcome");
-                                      },
-                                    child: Text("Log Out"),
-                                  )
+
 
                                 ],
                               ),
@@ -350,20 +357,20 @@ class _Profile1State extends State<Profile1> {
               ],
             ),
 
-            Positioned(
-              top: 32,
-              left: 16,
-              child: GestureDetector(
-                onTap: () {
-
-                },
-                child: Icon(
-                  Icons.keyboard_arrow_left,
-                  color: Colors.white,
-                  size: 32,
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: 32,
+            //   left: 16,
+            //   child: GestureDetector(
+            //     onTap: () {
+            //
+            //     },
+            //     child: Icon(
+            //       Icons.keyboard_arrow_left,
+            //       color: Colors.white,
+            //       size: 32,
+            //     ),
+            //   ),
+            // ),
 
           ],
         ),
@@ -385,11 +392,9 @@ class _Profile1State extends State<Profile1> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.messenger),
-            label: "Messages",
+            icon: Icon(FontAwesomeIcons.plus),
+            label: "New Post",
             backgroundColor: AppColors.kBlue,
-
-
           ),
 
           BottomNavigationBarItem(
