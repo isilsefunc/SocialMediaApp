@@ -1,8 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
 import "package:social_media_app/widgets/feed-post.dart";
 

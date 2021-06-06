@@ -1,7 +1,5 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
-import 'package:social_media_app/utils/pallete.dart';
-import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 
 

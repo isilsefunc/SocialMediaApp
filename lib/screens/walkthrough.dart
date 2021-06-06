@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
+import 'wrapper.dart';
 
 
 class WalkThrough extends StatefulWidget {

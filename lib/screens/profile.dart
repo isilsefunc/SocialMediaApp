@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_app/services/auth.dart';
 import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
 import "package:social_media_app/widgets/feed-post.dart";
@@ -15,6 +16,8 @@ class Profile1 extends StatefulWidget {
 }
 
 class _Profile1State extends State<Profile1> {
+  final AuthService _auth = AuthService();
+
   List<Widget> Tabs = [
 
   Container(
@@ -250,6 +253,15 @@ class _Profile1State extends State<Profile1> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+
+                                  TextButton(
+                                      onPressed:  () async {
+                                        dynamic result = await _auth.signOut();
+                                        print(result);
+                                          Navigator.pushNamed(context, "/welcome");
+                                      },
+                                    child: Text("Log Out"),
+                                  )
 
                                 ],
                               ),
