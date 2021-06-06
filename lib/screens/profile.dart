@@ -1,8 +1,11 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:social_media_app/screens/models/post.dart';
 import 'package:social_media_app/services/auth.dart';
 import "package:social_media_app/utils/data.dart";
 import "package:social_media_app/utils/pallete.dart";
@@ -12,12 +15,22 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 
 
 class Profile1 extends StatefulWidget {
+  final String profileId;
+
+  const Profile1({Key key, this.profileId}) : super(key: key);
+
   @override
   _Profile1State createState() => _Profile1State();
 }
 
 class _Profile1State extends State<Profile1> {
   final AuthService _auth = AuthService();
+  final User currentUser = FirebaseAuth.instance.currentUser;
+  final String currentUserId = FirebaseAuth.instance.currentUser.uid;
+  int postCount = 0;
+  bool isFollowing = false;
+  List<AppPost> posts = [];
+
 
   List<Widget> Tabs = [
 
@@ -90,6 +103,34 @@ class _Profile1State extends State<Profile1> {
     });
   }
 
+  Container buildButton(String text, Function function){
+
+    return Container(
+      padding: EdgeInsets.only(top:2.0),
+      child: FlatButton(
+        onPressed: function,
+        child: Container(
+          child: Text(text, style: TextStyle(color: Colors.white70),),
+
+
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            border: Border.all(
+              color: Colors.blue,
+            ),
+            borderRadius: BorderRadius.circular(5.0),
+          ),
+      ),
+      ),
+    );
+  }
+
+  buildProfileButton(){
+    bool isProfileOwner = currentUserId == widget.profileId;
+    if(isProfileOwner){
+      return buildButton("Edit Profile", func());
+    }
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -267,6 +308,7 @@ class _Profile1State extends State<Profile1> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
+                                  buildButton( "Edit Profile ",  func())
 
 
 
@@ -281,6 +323,7 @@ class _Profile1State extends State<Profile1> {
                           ],
                         ),
                       ),
+
 
                     ],
                   ),
@@ -421,4 +464,6 @@ class _Profile1State extends State<Profile1> {
       child: item,
     );
   }
+
+  Function func() {}
 }

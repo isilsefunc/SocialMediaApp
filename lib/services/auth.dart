@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_app/functions/functions.dart';
 import 'package:social_media_app/services/database.dart';
 
 
@@ -48,7 +49,8 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User user = result.user;
 
-      await DatabaseService(uid: user.uid).createUserData(user.email); // burda userın her şeyini giricez şuan deneme için sadece e mail var
+      addUser( email,  password);
+     //await DatabaseService(uid: user.uid).createUserData(user.email); // burda userın her şeyini giricez şuan deneme için sadece e mail var
 
       return _userFromFirebaseUser(user);
     } catch (error) {

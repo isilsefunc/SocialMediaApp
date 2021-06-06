@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,7 +10,6 @@ import 'package:social_media_app/utils/styles.dart';
 import 'package:social_media_app/widgets/widgets.dart';
 import 'package:social_media_app/screens/authenticate/components/guugleSignIn.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-
 import 'package:http/http.dart';
 
 class Newpost extends StatefulWidget {
