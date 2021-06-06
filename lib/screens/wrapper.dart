@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'authenticate/create-new-account.dart';
 import 'authenticate/login-screen.dart';
+import 'edit_profile.dart';
 import 'home.dart';
 import 'notifications.dart';
 import 'profile.dart';

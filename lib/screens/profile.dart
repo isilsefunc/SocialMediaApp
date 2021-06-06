@@ -106,7 +106,7 @@ class _Profile1State extends State<Profile1> {
             Navigator.pushNamed(context, "/welcome");
           },
           child: Text("Log Out", style: TextStyle(color: AppColors.kWhite),),
-          )
+          ),
         ],
       ),
       extendBodyBehindAppBar: false,

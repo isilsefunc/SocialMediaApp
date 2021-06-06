@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/styles.dart';
@@ -8,6 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:social_media_app/widgets/feed-post.dart";
 import "package:social_media_app/widgets/profile_card.dart";
 import "package:social_media_app/widgets/location_card.dart";
+
+import 'models/user.dart';
 
 
 class SearchScreen extends StatefulWidget {
@@ -19,7 +23,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen>{
-  List<bool> isSelected = List.generate(4, (_) => false);
+  List<bool> isSelected = List.generate(2, (_) => false); //4ten 2ye düşürdük
 
   int _currentIndex = 1;
   List <String> pages = ["/home", "/search", "/newpost", "/notification", "/profile"];
@@ -30,6 +34,34 @@ class _SearchScreenState extends State<SearchScreen>{
     });
   }
 
+  String _search;
+  Future<QuerySnapshot> searchResultsFuture;
+  handleSearch(String query) {
+    Future<QuerySnapshot> users = usersRef
+        .where("username", isGreaterThanOrEqualTo: query)
+        .getDocuments();
+    setState(() {
+      searchResultsFuture = users;
+    });
+  }
+  buildSearchResults() {
+    return FutureBuilder(
+      future: searchResultsFuture,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return circularProgress();
+        }
+        List<Text> searchResults = [];
+        snapshot.data.documents.forEach((doc) {
+          AppUser user = AppUser.fromDocument(doc);
+          searchResults.add(Text(user.username));
+        });
+        return ListView(
+          children:
+        )
+      }
+    );
+  }
   @override
   Widget build(BuildContext context) {
    /* void navigateToDetailScreen() {
@@ -52,11 +84,27 @@ class _SearchScreenState extends State<SearchScreen>{
                   Column(
                     children: [
                       SizedBox(height: 40,),
-                      TextInputField(
-                        isSearch: true,
-                        icon: FontAwesomeIcons.search,
-                        hint: 'Search',
-                        inputAction: TextInputAction.next,
+                      // TextInputField(
+                      //   isSearch: true,
+                      //   icon: FontAwesomeIcons.search,
+                      //   hint: 'Search',
+                      //   inputAction: TextInputAction.next,
+                      // ),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            focusColor: Colors.black12,
+                            contentPadding: EdgeInsets.only(top: 20),
+                            isDense: true,
+                            hintText: 'Search',
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.only(top:15),
+                              child: Icon(FontAwesomeIcons.search),
+                            ),
+                          ),
+                          onFieldSubmitted: handleSearch,
+                        ),
                       ),
                       Center(
                         child: ToggleButtons(
@@ -68,12 +116,12 @@ class _SearchScreenState extends State<SearchScreen>{
                           splashColor: AppColors.kBlue,
                           highlightColor: const Color(0xFF580CBA),
                           borderRadius: BorderRadius.circular(0),
-                          constraints: BoxConstraints.expand(width: 82, height: 20),
+                          constraints: BoxConstraints.expand(width: 165, height: 20),
                           children: <Widget>[
                             Text("Profile"),
                             Text("Posts"),
-                            Text("Tags"),
-                            Text("Locations"),
+                            // Text("Tags"),
+                            // Text("Locations"),
                           ],
                           onPressed: (int index) {
                             setState(() {
@@ -151,20 +199,20 @@ class _SearchScreenState extends State<SearchScreen>{
                   ),
                 ],
               ),
-              if(isSelected[2]) Column(
-                children: [
-                  TagCard(
-                    tag: "naber_lan_tirrek",
-                  ),
-                ],
-              ),
-              if(isSelected[3]) Column(
-                children: [
-                  LocationCard(
-                    location: "Sabancı University",
-                  ),
-                ],
-              ),
+              // if(isSelected[2]) Column(
+              //   children: [
+              //     TagCard(
+              //       tag: "naber_lan_tirrek",
+              //     ),
+              //   ],
+              // ),
+              // if(isSelected[3]) Column(
+              //   children: [
+              //     LocationCard(
+              //       location: "Sabancı University",
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),
