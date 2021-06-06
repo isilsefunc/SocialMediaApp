@@ -22,7 +22,7 @@ class _SearchScreenState extends State<SearchScreen>{
   List<bool> isSelected = List.generate(4, (_) => false);
 
   int _currentIndex = 1;
-  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  List <String> pages = ["/home", "/search", "/newpost", "/notification", "/profile"];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -187,11 +187,9 @@ class _SearchScreenState extends State<SearchScreen>{
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.messenger),
-            label: "Messages",
+            icon: Icon(FontAwesomeIcons.plus),
+            label: "New Post",
             backgroundColor: AppColors.kBlue,
-
-
           ),
 
           BottomNavigationBarItem(

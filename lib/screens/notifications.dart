@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:social_media_app/utils/pallete.dart';
 import 'package:social_media_app/utils/data.dart';
 import "package:social_media_app/widgets/notification_card.dart";
@@ -12,7 +13,7 @@ class Notifications extends StatefulWidget {
 
 class _NotificationsState extends State<Notifications> {
   int _currentIndex = 3;
-  List <String> pages = ["/home", "/search", "/home", "/notification", "/profile"];
+  List <String> pages = ["/home", "/search", "/newpost", "/notification", "/profile"];
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -78,11 +79,9 @@ class _NotificationsState extends State<Notifications> {
           ),
 
           BottomNavigationBarItem(
-            icon: Icon(Icons.messenger),
-            label: "Messages",
+            icon: Icon(FontAwesomeIcons.plus),
+            label: "New Post",
             backgroundColor: AppColors.kBlue,
-
-
           ),
 
           BottomNavigationBarItem(
