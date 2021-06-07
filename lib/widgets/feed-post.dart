@@ -1,50 +1,80 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import "package:social_media_app/utils/colors.dart";
 import "package:social_media_app/widgets/card_tags.dart";
 
-class FeedCard extends StatelessWidget {
-  final String status;
-  final String rating;
-  final String imagePath;
-  final String cardTitle;
-  final String category;
-  final String distance;
-  final String description;
-  final GestureTapCallback onTap;
-  final bool bookmark;
-  final bool isThereStatus;
-  final double tagRadius;
-  final double width;
-  final double cardHeight;
-  final double imageHeight;
-  final double cardElevation;
-  final double ratingsAndStatusCardElevation;
-  final List<String> followersImagePath;
+class FeedCard extends StatefulWidget {
+  DocumentSnapshot inf;
+  FeedCard({this.inf});
+  @override
+  _FeedCardState createState() => _FeedCardState(this.inf);
+}
 
-  FeedCard({
-    this.status = "OPEN",
-    this.rating = "45",
-    this.imagePath,
-    this.cardTitle,
-    this.category,
-    this.distance,
-    this.description,
-    this.width = 380.0,
-    this.cardHeight = 320.0,
-    this.imageHeight = 220.0,
-    this.tagRadius = 8.0,
-    this.onTap,
-    this.isThereStatus = true,
-    this.bookmark = false,
-    this.cardElevation = 4.0,
-    this.ratingsAndStatusCardElevation = 8.0,
-    this.followersImagePath,
-  });
+
+class _FeedCardState extends State<FeedCard> {
+  String status;
+  String rating;
+  String imagePath;
+  String cardTitle;
+  //String category;
+  //String distance;
+  String description;
+  GestureTapCallback onTap;
+  bool bookmark;
+  //bool isThereStatus;
+  double tagRadius;
+  double width;
+  double cardHeight;
+  double imageHeight;
+  double cardElevation;
+  //double ratingsAndStatusCardElevation;
+  List<String> followersImagePath;
+
+  _FeedCardState(DocumentSnapshot document) {
+    //print(document['likes']);
+    this.status = "OPEN";
+    this.rating = "${document['likes']}";
+    this.imagePath = document['image'];
+    this.cardTitle = document['username'];
+    //this.category;
+    //this.distance;
+    this.description = document['description'];
+    this.width = 380.0;
+    this.cardHeight = 320.0;
+    this.imageHeight = 220.0;
+    this.tagRadius = 8.0;
+    this.onTap = () {print("TaAP");};
+    //this.isThereStatus = true;
+    this.bookmark = false;
+    this.cardElevation = 4.0;
+    //this.ratingsAndStatusCardElevation = 8.0;
+  }
+
+
+  // FeedCard({
+  //   this.status = "OPEN",
+  //   this.rating = "45",
+  //   this.imagePath,
+  //   this.cardTitle,
+  //   //this.category,
+  //   //this.distance,
+  //   this.description,
+  //   this.width = 380.0,
+  //   this.cardHeight = 320.0,
+  //   this.imageHeight = 220.0,
+  //   this.tagRadius = 8.0,
+  //   this.onTap,
+  //   this.isThereStatus = true,
+  //   this.bookmark = false,
+  //   this.cardElevation = 4.0,
+  //   this.ratingsAndStatusCardElevation = 8.0,
+  //   this.followersImagePath,
+  // });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+
       child: Container(
         width: width,
         height: cardHeight,
@@ -58,16 +88,19 @@ class FeedCard extends StatelessWidget {
               Positioned(
                 child: Column(
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: Image.asset(
-                        imagePath,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        height: imageHeight,
-                        fit: BoxFit.cover,
+                    InkWell(
+                      onTap: this.onTap,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(4),
+                        child: Image.asset(
+                          imagePath,
+                          width: MediaQuery
+                              .of(context)
+                              .size
+                              .width,
+                          height: imageHeight,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Container(
@@ -91,42 +124,42 @@ class FeedCard extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(width: 4.0),
-                              CardTags(
-                                title: category,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment(0.9661, 0.5),
-                                    end: Alignment(0, 0.5),
-                                    stops: [
-                                      0,
-                                      1,
-                                    ],
-                                    colors: [
-                                      Color.fromARGB(255, 255, 86, 115),
-                                      Color.fromARGB(255, 255, 140, 72),
-                                    ],
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color.fromARGB(13, 0, 0, 0),
-                                      offset: Offset(0, 3.33333),
-                                      blurRadius: 33,
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(tagRadius),
-                                  ),
-                                ),
-                              ),
+                              // CardTags(
+                              //   title: category,
+                              //   decoration: BoxDecoration(
+                              //     gradient: LinearGradient(
+                              //       begin: Alignment(0.9661, 0.5),
+                              //       end: Alignment(0, 0.5),
+                              //       stops: [
+                              //         0,
+                              //         1,
+                              //       ],
+                              //       colors: [
+                              //         Color.fromARGB(255, 255, 86, 115),
+                              //         Color.fromARGB(255, 255, 140, 72),
+                              //       ],
+                              //     ),
+                              //     boxShadow: [
+                              //       BoxShadow(
+                              //         color: Color.fromARGB(13, 0, 0, 0),
+                              //         offset: Offset(0, 3.33333),
+                              //         blurRadius: 33,
+                              //       ),
+                              //     ],
+                              //     borderRadius: BorderRadius.all(
+                              //       Radius.circular(tagRadius),
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(width: 5.0),
-                              CardTags(
-                                title: distance,
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 132, 141, 255),
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(tagRadius)),
-                                ),
-                              ),
+                              // CardTags(
+                              //   title: distance,
+                              //   decoration: BoxDecoration(
+                              //     color: Color.fromARGB(255, 132, 141, 255),
+                              //     borderRadius: BorderRadius.all(
+                              //         Radius.circular(tagRadius)),
+                              //   ),
+                              // ),
                               Spacer(
                                 flex: 1,
                               ),
@@ -218,46 +251,46 @@ class FeedCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Positioned(
-                left: 16.0,
-                right: 16.0,
-                top: 8.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    isThereStatus
-                        ? Card(
-                      elevation: ratingsAndStatusCardElevation,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                            vertical: 8.0),
-                        child: Text(
-                          status,
-                          style: status.toLowerCase() ==
-                              "open"
-                              ? TextStyle(
-                            color: AppColors.KonnektGreen,
-                            fontFamily: "Josefin Sans",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 10.0,
-                            letterSpacing: 0,
-                          )
-                              : TextStyle(
-                            color: Colors.red,
-                            fontFamily: "Josefin Sans",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 10.0,
-                            letterSpacing: 0,
-                          ),
-                        ),
-                      ),
-                    )
-                        : Container(),
-
-                  ],
-                ),
-              ),
+              // Positioned(
+              //   left: 16.0,
+              //   right: 16.0,
+              //   top: 8.0,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: <Widget>[
+              //       isThereStatus
+              //           ? Card(
+              //         elevation: ratingsAndStatusCardElevation,
+              //         child: Padding(
+              //           padding: const EdgeInsets.symmetric(
+              //               horizontal: 12.0,
+              //               vertical: 8.0),
+              //           child: Text(
+              //             status,
+              //             style: status.toLowerCase() ==
+              //                 "open"
+              //                 ? TextStyle(
+              //               color: AppColors.KonnektGreen,
+              //               fontFamily: "Josefin Sans",
+              //               fontWeight: FontWeight.w700,
+              //               fontSize: 10.0,
+              //               letterSpacing: 0,
+              //             )
+              //                 : TextStyle(
+              //               color: Colors.red,
+              //               fontFamily: "Josefin Sans",
+              //               fontWeight: FontWeight.w700,
+              //               fontSize: 10.0,
+              //               letterSpacing: 0,
+              //             ),
+              //           ),
+              //         ),
+              //       )
+              //           : Container(),
+              //
+              //     ],
+              //   ),
+              // ),
               bookmark
                   ? Positioned(
                 top: (cardHeight / 2) + 16,

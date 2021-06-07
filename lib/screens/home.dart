@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import "package:social_media_app/utils/pallete.dart";
 import "package:social_media_app/widgets/feed-post.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
 
 class HomeFeed extends StatefulWidget {
   @override
@@ -11,161 +12,159 @@ class HomeFeed extends StatefulWidget {
 }
 
 class _HomeFeedState extends State<HomeFeed> {
-  List<Widget> Feeds = [
-    FeedCard(
-      imagePath: "assets/images/card_image_1.jpg",
-      status: "open",
-      cardTitle: "Baranci",
-      category: "Italian",
-      distance: "12 km",
-      description: "Baran(21) CS okumak hiç stresli değil",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_2.jpg",
-      status: "open",
-      cardTitle: "Baranci",
-      category: "Italian",
-      distance: "12 km",
-      description: "Grand-son of Barney Stinson",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_3.jpg",
-      status: "open",
-      cardTitle: "Jozkeh",
-      category: "Italian",
-      distance: "12 km",
-      description: "Varsa Şekliniz Bumble'a Bekleriz",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_4.jpg",
-      status: "open",
-      cardTitle: "Jozkeh",
-      category: "Italian",
-      distance: "12 km",
-      description: "Bugün de Bitcoin'den battık",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_5.jpg",
-      status: "open",
-      cardTitle: "Isilsefunc",
-      category: "Italian",
-      distance: "12 km",
-      description: "Life is meaningless if you have black hair",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_6.jpg",
-      status: "open",
-      cardTitle: "Isilsefunc",
-      category: "Italian",
-      distance: "12 km",
-      description: "#tbt :(",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_7.jpg",
-      status: "open",
-      cardTitle: "Batuhandemir98",
-      category: "Italian",
-      distance: "12 km",
-      description: "Gitarım şekil yolumdan çekil!",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_8.jpg",
-      status: "open",
-      cardTitle: "Batuhandemir98",
-      category: "Italian",
-      distance: "12 km",
-      description: "Kralla çay keyfi",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_9.jpg",
-      status: "open",
-      cardTitle: "Ataberkylmaz",
-      category: "Italian",
-      distance: "12 km",
-      description: "Corona drinking in Corona times",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_10.jpg",
-      status: "open",
-      cardTitle: "Ataberkylmaz",
-      category: "Italian",
-      distance: "12 km",
-      description: "10 Like'a arkadaki kızları içmeye davet ederim",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_11.jpg",
-      status: "open",
-      cardTitle: "Goktug_calskan",
-      category: "Italian",
-      distance: "12 km",
-      description: "Ben bir ceviz ağacıyım gülhane parkında..",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-    SizedBox(
-      height: 16.0,
-    ),
-    FeedCard(
-      imagePath: "assets/images/card_image_12.jpg",
-      status: "open",
-      cardTitle: "Goktug_calskan",
-      category: "Italian",
-      distance: "12 km",
-      description: "Ne sen bunun farkındasın ne de sincap.",
-      isThereStatus: false,
-      onTap: () {},
-    ),
-  ];
+  // List<Widget> Feeds = [
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_1.jpg",
+  //     status: "open",
+  //     cardTitle: "Baranci",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Baran(21) CS okumak hiç stresli değil",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_2.jpg",
+  //     status: "open",
+  //     cardTitle: "Baranci",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Grand-son of Barney Stinson",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_3.jpg",
+  //     status: "open",
+  //     cardTitle: "Jozkeh",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Varsa Şekliniz Bumble'a Bekleriz",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_4.jpg",
+  //     status: "open",
+  //     cardTitle: "Jozkeh",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Bugün de Bitcoin'den battık",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_5.jpg",
+  //     status: "open",
+  //     cardTitle: "Isilsefunc",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Life is meaningless if you have black hair",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_6.jpg",
+  //     status: "open",
+  //     cardTitle: "Isilsefunc",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "#tbt :(",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_7.jpg",
+  //     status: "open",
+  //     cardTitle: "Batuhandemir98",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Gitarım şekil yolumdan çekil!",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_8.jpg",
+  //     status: "open",
+  //     cardTitle: "Batuhandemir98",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Kralla çay keyfi",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_9.jpg",
+  //     status: "open",
+  //     cardTitle: "Ataberkylmaz",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Corona drinking in Corona times",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_10.jpg",
+  //     status: "open",
+  //     cardTitle: "Ataberkylmaz",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "10 Like'a arkadaki kızları içmeye davet ederim",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_11.jpg",
+  //     status: "open",
+  //     cardTitle: "Goktug_calskan",
+  //     category: "Italian",
+  //     distance: "12 km",
+  //     description: "Ben bir ceviz ağacıyım gülhane parkında..",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  //   SizedBox(
+  //     height: 16.0,
+  //   ),
+  //   FeedCard(
+  //     imagePath: "assets/images/card_image_12.jpg",
+  //     status: "open",
+  //     cardTitle: "Goktug_calskan",
+  //     description: "Ne sen bunun farkındasın ne de sincap.",
+  //     isThereStatus: false,
+  //     onTap: () {},
+  //   ),
+  // ];
   int _currentIndex = 0;
   List <String> pages = ["/home", "/search", "/newpost", "/notification", "/profile"];
   void onTabTapped(int index) {
@@ -187,9 +186,19 @@ class _HomeFeedState extends State<HomeFeed> {
             Container(
               height: size.height,
               padding: EdgeInsets.only(left: 16, right: 16, top:0.0, bottom: 24,),
-              child:  ListView(
-                physics: BouncingScrollPhysics(),
-                children: Feeds,
+              child:  StreamBuilder(
+                stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+                builder: (context, snapshot) {
+                  if(!snapshot.hasData) return const Text('Loading...');
+
+                  return ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    itemExtent: 80.0,
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (context, index) =>
+                      FeedCard(inf: snapshot.data.docs[index]),
+                  );
+                },
               )
             )
           ],

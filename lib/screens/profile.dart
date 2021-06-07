@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +28,7 @@ class _Profile1State extends State<Profile1> {
   final AuthService _auth = AuthService();
   final User currentUser = FirebaseAuth.instance.currentUser;
   final String currentUserId = FirebaseAuth.instance.currentUser.uid;
+
   int postCount = 0;
   bool isFollowing = false;
   List<AppPost> posts = [];
@@ -36,33 +38,46 @@ class _Profile1State extends State<Profile1> {
 
   Container(
     padding: EdgeInsets.only(left: 16, right: 16, top:0.0, bottom: 24,),
-    child:  ListView(
-      physics: BouncingScrollPhysics(),
-      children: <Widget>[
-        FeedCard(
-          imagePath: "assets/images/card_image_1.jpg",
-          status: "open",
-          cardTitle: "Baranci",
-          category: "Italian",
-          distance: "12 km",
-          description: "Baran(21) CS okumak hiç stresli değil",
-          isThereStatus: false,
-          onTap: () {},
-        ),
-        SizedBox(
-          height: 16.0,
-        ),
-        FeedCard(
-          imagePath: "assets/images/card_image_2.jpg",
-          status: "open",
-          cardTitle: "Baranci",
-          category: "Italian",
-          distance: "12 km",
-          description: "Grand-son of Barney Stinson",
-          isThereStatus: false,
-          onTap: () {},
-        ),
-      ],
+    child:  StreamBuilder(
+      stream: FirebaseFirestore.instance.collection('posts').where('userID', isEqualTo: FirebaseAuth.instance.currentUser.uid).snapshots(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData) return const Text('Loading...');
+        return ListView.builder(
+          physics: BouncingScrollPhysics(),
+          itemExtent: 80.0,
+          itemCount: snapshot.data.docs.length,
+          itemBuilder: (context, index) =>
+              FeedCard(inf: snapshot.data.docs[index]),
+        );
+      },
+      //child: ListView(
+
+        //children: <Widget>[
+          // FeedCard(
+          //   imagePath: "assets/images/card_image_1.jpg",
+          //   status: "open",
+          //   cardTitle: "Baranci",
+          //   category: "Italian",
+          //   distance: "12 km",
+          //   description: "Baran(21) CS okumak hiç stresli değil",
+          //   isThereStatus: false,
+          //   onTap: () {},
+          // ),
+          // SizedBox(
+          //   height: 16.0,
+          // ),
+          // FeedCard(
+          //   imagePath: "assets/images/card_image_2.jpg",
+          //   status: "open",
+          //   cardTitle: "Baranci",
+          //   category: "Italian",
+          //   distance: "12 km",
+          //   description: "Grand-son of Barney Stinson",
+          //   isThereStatus: false,
+          //   onTap: () {},
+          // ),
+        //],
+      //),
     ),
   ),
     Container(
@@ -128,7 +143,7 @@ class _Profile1State extends State<Profile1> {
   buildProfileButton(){
     bool isProfileOwner = currentUserId == widget.profileId;
     if(isProfileOwner){
-      return buildButton("Edit Profile", func());
+      //return buildButton("Edit Profile", func());
     }
   }
   @override
@@ -308,7 +323,7 @@ class _Profile1State extends State<Profile1> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  buildButton( "Edit Profile ",  func())
+                                  //buildButton( "Edit Profile ",  func())
 
 
 

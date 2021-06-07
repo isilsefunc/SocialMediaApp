@@ -13,6 +13,12 @@ Future<void> addUser(String email, String pass) {
       .add({
     'email': email, // John Doe
     'pass': pass, // Stokes and Sons
+    'bio': '',
+    'deactivated': false,
+    'followers': 0,
+    'following': 0,
+    'image': null,
+    'public': true,
 
       })
       .then((value) => print("User Added"))
