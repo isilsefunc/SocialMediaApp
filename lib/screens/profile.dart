@@ -323,13 +323,12 @@ class _Profile1State extends State<Profile1> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  //buildButton( "Edit Profile ",  func())
-
-
-
                                 ],
                               ),
                             ),
+
+
+
                             /*
                             Expanded(
                               child: Container(),

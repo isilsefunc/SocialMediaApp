@@ -193,7 +193,7 @@ class _HomeFeedState extends State<HomeFeed> {
 
                   return ListView.builder(
                     physics: BouncingScrollPhysics(),
-                    itemExtent: 80.0,
+                    //itemExtent: 80.0,
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) =>
                       FeedCard(inf: snapshot.data.docs[index]),
